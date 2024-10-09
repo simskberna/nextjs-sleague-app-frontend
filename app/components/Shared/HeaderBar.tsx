@@ -11,11 +11,10 @@ import Container from '@mui/material/Container';
 import { styled, alpha } from '@mui/material/styles';
 import Button from '@mui/material/Button'; 
 import MenuItem from '@mui/material/MenuItem'; 
-import Logo from '../public/assets/logo.png';
-import Image from 'next/image';
+import Logo from '../../public/assets/logo.png';
+import Image from 'next/image'; 
 import SearchIcon from '@mui/icons-material/Search';
-import { InputBase } from '@mui/material';
-import Link from 'next/link'; 
+import { InputBase,Link } from '@mui/material'; 
 import { useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import EastIcon from '@mui/icons-material/East';
@@ -90,7 +89,7 @@ function HeaderBar() {
     <ThemeProvider theme={theme}>
     <AppBar position="static" style={{boxShadow:'unset',background:'transparent',borderBottom:'1px solid #d9d9d9'}}>
       <Container maxWidth="xl" sx={{bgcolor:'white'}}>
-        <Toolbar disableGutters sx={{display:'grid',gridTemplateColumns:'auto auto auto'}}> 
+        <Toolbar disableGutters sx={{display:'grid',gridTemplateColumns:{xs:'auto auto', md:'auto auto auto'}}}> 
          
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -98,8 +97,7 @@ function HeaderBar() {
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
+              onClick={handleOpenNavMenu} 
             >
               <MenuIcon />
             </IconButton>
@@ -120,16 +118,18 @@ function HeaderBar() {
               sx={{ display: { xs: 'block', md: 'none' } }}
             >
               {pages.map((page) => (
+                 <Link key={page.name} underline="none" href={`/${page.name.toLowerCase() === 'home' ? '' : page.name.toLowerCase()}`}>
                 <MenuItem key={page.name} onClick={handleCloseNavMenu}>
                   <Typography sx={{ textAlign: 'center' }}>{page.name}</Typography>
                 </MenuItem>
+                </Link>
               ))}
             </Menu>
           </Box> 
         
           <Box sx={{px:4,py:2, display: { xs: 'none', md: 'flex',} }}>
             {pages.map((page) => (
-              <Link key={page.name} href={`/${page.name.toLowerCase() === 'home' ? '' : page.name.toLowerCase()}`}>
+              <Link key={page.name} underline="none" href={`/${page.name.toLowerCase() === 'home' ? '' : page.name.toLowerCase()}`}>
                 <Button 
                   key={page.name}
                   onClick={handleCloseNavMenu} 
@@ -146,12 +146,12 @@ function HeaderBar() {
             ))}
           </Box> 
           <Box sx={{ml:2}}>
-            <Link href={'/'}>
+            <Link href={'/'} underline="none" sx={{display:'flex',justifyContent:{xs:'end',md:'center'},alignItems:'center'}}>
             <Image src={Logo} className='scale-up-on-hover' alt="Logo" width={40} height={40}/>
             </Link>
           </Box>
           <Container sx={{display:'flex',justifyContent:'center'}}>
-          <Search>
+          <Search sx={{display: { xs: 'none', md: 'flex'}}} >
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -160,14 +160,14 @@ function HeaderBar() {
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search> 
-          <Box sx={{height:'auto',ml:2}}>
-            <Link href={'/'} className='p-2 group rounded-full flex items-center justify-center px-4 gap-2 hover:duration-300 hover:transition-all hover:bg-black/5'>
+          <Box sx={{height:'auto',ml:2,display: { xs: 'none', md: 'flex'}}}>
+            <Link href={'/'}  underline="none" className='p-2 group rounded-full flex items-center justify-center px-4 gap-2 hover:duration-300 hover:transition-all hover:bg-black/5'>
               <Typography sx={{fontSize:'14px',color:'black'}}>Join us</Typography>
               <EastIcon sx={{color:'black',width:'20px'}} className='group-hover:translate-x-1 transition-all'/>
             </Link>
           </Box>
-          <Box sx={{height:'auto'}}>
-            <Link href={'/'} className='p-2 group bg-[#4caf50] rounded-full flex items-center justify-center px-4 gap-2 hover:duration-300 hover:transition-all hover:bg-[#369b3d]'>
+          <Box sx={{height:'auto',display: { xs: 'none', md: 'flex'}}}>
+            <Link href={'/'} underline="none" className='p-2 group bg-[#4caf50] rounded-full flex items-center justify-center px-4 gap-2 hover:duration-300 hover:transition-all hover:bg-[#369b3d]'>
               <Typography sx={{fontSize:'14px',color:'black'}}>Contact us</Typography>
               <EastIcon sx={{color:'black',width:'20px'}} className='group-hover:translate-x-1 transition-all'/>
             </Link>

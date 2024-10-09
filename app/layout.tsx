@@ -1,7 +1,7 @@
 import type { Metadata } from "next"; 
 import "./globals.css";
-import HeaderBar from "./components/HeaderBar";
-import FooterBar from "./components/FooterBar";
+import HeaderBar from "./components/Shared/HeaderBar";
+import Footer from "./components/Shared/Footer";
 
 export const metadata: Metadata = {
   title: "NWSL Next App",
@@ -20,6 +20,7 @@ export default function RootLayout({
       >
         <HeaderBar/>
         {children} 
+        <Footer/>
       </body>
     </html>
   );

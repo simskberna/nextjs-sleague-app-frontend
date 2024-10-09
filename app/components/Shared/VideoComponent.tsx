@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, Container } from '@mui/material';
 
 interface VideoProps {
     videoId: string;
@@ -18,18 +18,19 @@ const VideoComponent: React.FC<VideoProps> = ({videoId}) => {
         backgroundColor: '#000',
       }}
     >
+      <Container sx={{ width: {xs:'w-fit',md:'400px'},
+          height: '200px',}}>
       <iframe
         src={`https://www.youtube.com/embed/${videoId}`}
         frameBorder="0"
         allowFullScreen
         style={{ 
-          top: 0,
-          left: 0,
-          width: '400px',
-          height: '200px',
+          top: 20,
+          left: 50, 
         }}
         title="YouTube Video"
       />
+      </Container>
     </Box>
   );
 };
