@@ -1,7 +1,7 @@
 'use client'
-import { Container } from "@mui/material";
-import Landing from "./components/HomePage/Landing";
+import { Container } from "@mui/material"; 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import HomePage from "./(routes)/home/page";
 
 export default function Home() {
   const theme = createTheme({
@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <ThemeProvider theme={theme}>
     <Container sx={{height:'auto',p:0}}>  
-      <Landing/> 
+      <HomePage/>
     </Container>
     </ThemeProvider>
   );

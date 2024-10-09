@@ -69,7 +69,7 @@ function HeaderBar() {
   const [pages] = useState([
       {name:'Home',path:'/'}, 
       {name:'LeagueStats',path:'/league-stats'},
-      {name:'PlayerFocus',path:'/player'}
+      {name:'PlayerFocus',path:'/player-focus'}
     ]
   )  
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -117,33 +117,43 @@ function HeaderBar() {
               onClose={handleCloseNavMenu}
               sx={{ display: { xs: 'block', md: 'none' } }}
             >
-              {pages.map((page) => (
-                 <Link key={page.name} underline="none" href={`/${page.name.toLowerCase() === 'home' ? '' : page.name.toLowerCase()}`}>
+             {pages.map((page) => (
+              <Link key={page.name} underline="none" href={page.name.toLowerCase() === 'home' ? '/' : page.path}>
                 <MenuItem key={page.name} onClick={handleCloseNavMenu}>
                   <Typography sx={{ textAlign: 'center' }}>{page.name}</Typography>
                 </MenuItem>
-                </Link>
-              ))}
+              </Link>
+            ))}
+
             </Menu>
           </Box> 
         
           <Box sx={{px:4,py:2, display: { xs: 'none', md: 'flex',} }}>
-            {pages.map((page) => (
-              <Link key={page.name} underline="none" href={`/${page.name.toLowerCase() === 'home' ? '' : page.name.toLowerCase()}`}>
-                <Button 
-                  key={page.name}
-                  onClick={handleCloseNavMenu} 
-                  sx={{ transition: 'all 150ms cubic-bezier(0.4, 0, 0.2, 1)',
-                    '&:hover': { 
-                      backgroundColor: 'white', 
-                      color:'#0009'
-                    },
-                    cursor:'pointer',padding:1,borderRadius:100, my: 0, color: 'black', display: 'block',marginBottom:'0px',mx:2}}
-                >
-                  {page.name}
-                </Button>
-              </Link>
-            ))}
+          {pages.map((page) => (
+            <Link key={page.name} underline="none" href={page.name.toLowerCase() === 'home' ? '/' : page.path}>
+              <Button 
+                key={page.name}
+                onClick={handleCloseNavMenu}
+                sx={{
+                  transition: 'all 150ms cubic-bezier(0.4, 0, 0.2, 1)',
+                  '&:hover': { 
+                    backgroundColor: 'white', 
+                    color: '#0009'
+                  },
+                  cursor: 'pointer',
+                  padding: 1,
+                  borderRadius: 100,
+                  my: 0,
+                  color: 'black',
+                  display: 'block',
+                  marginBottom: '0px',
+                  mx: 2
+                }}
+              >
+                {page.name}
+              </Button>
+            </Link>
+          ))} 
           </Box> 
           <Box sx={{ml:2}}>
             <Link href={'/'} underline="none" sx={{display:'flex',justifyContent:{xs:'end',md:'center'},alignItems:'center'}}>
