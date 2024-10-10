@@ -171,7 +171,7 @@ function HeaderBar() {
           </Search> 
           <Box sx={{height:'auto',ml:2,display: { xs: 'none', md: 'flex'}}}>
             <Link href={'/'}  underline="none" className='p-2 group rounded-full flex items-center justify-center px-4 gap-2 hover:duration-300 hover:transition-all hover:bg-black/5'>
-              <Typography sx={{fontSize:'14px',color:'black'}}>Join us</Typography>
+              <Typography variant="body1" sx={{color:'black'}}>Join us</Typography>
               <EastIcon 
                   sx={{ color: 'black', width:'20px',transition: 'transform 0.3s' }} 
                   className='group-hover:translate-x-1'
@@ -180,7 +180,7 @@ function HeaderBar() {
           </Box>
           <Box sx={{height:'auto',display: { xs: 'none', md: 'flex'}}}>
             <Link href={'/'} underline="none" className='p-2 group bg-[#4caf50] rounded-full flex items-center justify-center px-4 gap-2 hover:duration-300 hover:transition-all hover:bg-[#369b3d]'>
-              <Typography sx={{fontSize:'14px',color:'white'}}>Contact us</Typography>
+              <Typography variant="body1" sx={{color:'white'}}>Contact us</Typography>
               <EastIcon 
                   sx={{ color: 'white', transition: 'transform 0.3s' }} 
                   className='group-hover:translate-x-1'
