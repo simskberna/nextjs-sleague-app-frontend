@@ -1,5 +1,5 @@
  const PlayerFocusPage = () => {
-  return <div>page</div>
+  return <div>PlayerPage</div>
 }
 
 export default PlayerFocusPage

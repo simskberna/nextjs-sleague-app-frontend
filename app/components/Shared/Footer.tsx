@@ -53,8 +53,8 @@ const Footer: React.FC = () => {
           ))}
         </Box>
         <Box sx={{display:'flex',justifyContent:'center',alignItems:'center',gap:1,mt:6,mb:"10px"}}> 
-        {socialMediaIcons.map((item) => (
-          <Link href={item.url} passHref>
+        {socialMediaIcons.map((item,index) => (
+          <Link href={item.url} key={index} passHref>
           <IconButton
             className="group rounded-full"
             sx={{

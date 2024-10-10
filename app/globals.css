@@ -72,3 +72,7 @@ body {
     text-wrap: balance;
   }
 }
+
+.bg-gradient-from-gray {
+  background-image: linear-gradient(to top, #086017, rgba(255, 255, 255, 0));
+}

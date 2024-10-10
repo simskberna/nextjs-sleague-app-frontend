@@ -10,8 +10,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container'; 
 import { styled, alpha } from '@mui/material/styles';
 import Button from '@mui/material/Button'; 
-import MenuItem from '@mui/material/MenuItem'; 
-import Logo from '../../public/assets/logo.png';
+import MenuItem from '@mui/material/MenuItem';
 import Image from 'next/image'; 
 import SearchIcon from '@mui/icons-material/Search';
 import { InputBase,Link } from '@mui/material'; 
@@ -157,7 +156,7 @@ function HeaderBar() {
           </Box> 
           <Box sx={{ml:2}}>
             <Link href={'/'} underline="none" sx={{display:'flex',justifyContent:{xs:'end',md:'center'},alignItems:'center'}}>
-            <Image src={Logo} className='scale-up-on-hover' alt="Logo" width={40} height={40}/>
+            <Image src='/assets/logo.png' className='scale-up-on-hover' alt="Logo" width={40} height={40}/>
             </Link>
           </Box>
           <Container sx={{display:'flex',justifyContent:'center'}}>
