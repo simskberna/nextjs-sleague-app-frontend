@@ -7,6 +7,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import { IconButton } from '@mui/material';
 import { X as XIcon } from '@mui/icons-material';
 
+
 const links = [
   { href: '#', label: 'About KickOff Central' },
   { href: '#', label: 'Our Soccer Services' },
@@ -36,7 +37,7 @@ const Footer: React.FC = () => {
       }}
     >
       <Container sx={{ display: 'flex', flexDirection: 'column',mt:10,mb:10 }}>
-        <Box sx={{ display: 'flex', alignItems: {xs:'start',md:'center'}, justifyContent: 'center',gap:5,flexDirection:{xs:'column',md:'row'} }}>
+        <Box sx={{ display: 'flex', alignItems: {xs:'start',md:'center'}, justifyContent: 'center',gap:5,flexDirection:'row',flexWrap:{xs:'wrap',sm:'no-wrap'} }}>
           {links.map((link) => (
             <Link key={link.label} href={link.href} passHref>
               <Typography

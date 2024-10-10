@@ -55,18 +55,18 @@ const Hero = () => {
 
           <Stack direction="column" spacing={3} alignItems="center">
             <Stack direction="row" spacing={2}>
-              <Button variant="contained" sx={{boxShadow:'unset', backgroundColor: '#84cf81', color: 'white', '&:hover': { backgroundColor: 'sky.400' } }}>
+              <Button variant="contained" className="font-normal" sx={{boxShadow:'unset', backgroundColor: '#4caf50', color: 'white', '&:hover': {boxShadow:'unset', backgroundColor: '#84cf81' } }}>
                 Explore Now
               </Button>
-              <Button variant="outlined" className="poppins-thin" sx={{boxShadow:'unset',color: 'black', borderColor: '#dcdcdc', '&:hover': { backgroundColor: 'slate.100' } }}>
+              <Button variant="outlined" className="font-normal" sx={{boxShadow:'unset',color: 'black', borderColor: '#dcdcdc', '&:hover': { backgroundColor: '#c7efc3' } }}>
                 Discover More
               </Button>
             </Stack>
             <Stack direction="row">
-              <IconButton component="a" href="https://twitter.com" target="_blank" sx={{ scale:(0.7),color: '#a0afba', '&:hover': { color: '#849dae' } }}>
+              <IconButton component="a" href="https://twitter.com" target="_blank" className='hover:duration-300 transition-all' sx={{ scale:(0.7),color: '#a0afba', '&:hover': { color: '#41535a' } }}>
                 <TwitterIcon />
               </IconButton>
-              <IconButton component="a" href="https://linkedin.com" target="_blank" sx={{ scale:(0.7),color: '#a0afba', '&:hover': { color: '#849dae' } }}>
+              <IconButton component="a" href="https://linkedin.com" target="_blank" className='hover:duration-300 transition-all' sx={{ scale:(0.7),color: '#a0afba', '&:hover': { color: '#41535a' } }}>
                 <LinkedInIcon />
               </IconButton>
             </Stack>
