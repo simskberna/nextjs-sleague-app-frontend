@@ -1,6 +1,6 @@
 import React from 'react';
 import Hero from '@/app/components/HomePage/Hero';
-import { Container, Typography, Box, Stack } from '@mui/material';
+import { Container, Typography, Box, Stack, CardMedia,Card } from '@mui/material';
 import VideoComponent from '@/app/components/Shared/VideoComponent';
 import ReviewBox from '@/app/components/Shared/ReviewBox';
 import AnimatedContainer from '@/app/components/Shared/AnimationContainer';
@@ -178,6 +178,38 @@ const HomePage: React.FC = () => {
         </Stack> 
       </AnimatedContainer>
 
+      <AnimatedContainer>
+        <Container className='recent-results shadow-md rounded-md' sx={{my:10,backgroundColor:'white',p:2,border:'1px solid',borderColor:'#ededed'}}>
+        <Typography variant='h6' className='font-semibold text-black pb-8'>LaLiga</Typography>
+          <Stack sx={{display:'grid',gridTemplateColumns:'auto auto auto',p:0,alignItems:'center'}}> 
+              <Box className="home-team"> 
+                  <Card sx={{border:'none',boxShadow:'none',display:'flex',flexDirection:'column',justifyContent:'flex-start'}}>
+                        <CardMedia 
+                          sx={{ height: 150}}
+                          image="/assets/temporary-bottom-banner.jpeg"
+                          title="team-home"
+                        />
+                    </Card> 
+                  <Typography variant='body1' className='text-black font-semibold py-2'>Team 1</Typography>
+                  <Typography variant='body2' className='text-black font-normal opacity-[0.7]'>Home</Typography>
+              </Box>
+              <Box className="score text-center mb-8">
+                <Typography variant='h3' className='font-semibold text-black'>1:1</Typography>
+              </Box>
+              <Box className="away-team"> 
+                  <Card sx={{border:'none',boxShadow:'none',display:'flex',flexDirection:'column',justifyContent:'flex-start'}}>
+                    <CardMedia 
+                      sx={{ height: 150}}
+                      image="/assets/temporary-bottom-banner.jpeg"
+                      title="team-away"
+                    />
+                  </Card>
+                  <Typography variant='body1' className='text-black font-semibold py-2'>Team 2</Typography>
+                  <Typography variant='body2' className='text-black font-normal opacity-[0.7]'>Away</Typography>
+              </Box>
+          </Stack>
+        </Container>
+      </AnimatedContainer>
       <AnimatedContainer>
        <Container sx={{my:10}}>
        <Typography variant='h5' className='w-full text-center font-semibold py-8'>Upcoming Matches</Typography>
