@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import * as React from 'react';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -7,33 +7,29 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
-import { Box, Typography } from '@mui/material';
-import Image from 'next/image';
-
-interface Column {
-  id: 'positionTitle' | 'code' | 'population' | 'size' | 'density';
+import TableRow from '@mui/material/TableRow'; 
+ 
+export type Column = {
+  id: string;
   label: string;
-  minWidth?: number;
-  align?: 'right';
-  format?: (value: number) => string;
-}
+  minWidth: number;
+  align?: 'right' | 'left' | 'center';
+  format?: (value: any) => string | React.JSX.Element;
+};
 
-interface Data {
-  positionTitle: string;
-  code: string;
-  population: number;
-  size: number;
-  density: number;
-  avatar: string;
-}
+export type Row = {
+  [key: string]: any;
+};
 
-interface TableComponentProps {
+type TableComponentProps = {
   columns: Column[];
-  rows: Data[];
-}
+  rows: Row[];
+  headerBackground?:string;
+  border?:string;
+  rowStyle?:Object;
+};
 
-const TableComponent: React.FC<TableComponentProps> = ({ columns, rows }) => {
+const TableComponent: React.FC<TableComponentProps> = ({ columns, rows,headerBackground,border,rowStyle}) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -47,43 +43,33 @@ const TableComponent: React.FC<TableComponentProps> = ({ columns, rows }) => {
   };
 
   return (
-    <Paper sx={{ width: '100%', overflow: 'hidden', border: '1px solid #e5e5e5' }}>
+    <Paper sx={{ width: '100%', overflow: 'hidden', border: border }} className='table'>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              {columns.map((column) => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ fontWeight: 'bold', minWidth: column.minWidth }}
-                >
-                  {column.label}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
+        <TableHead sx={{ backgroundColor: '#1976d2' }}>
+          <TableRow>
+            {columns.map((column) => (
+              <TableCell
+                key={column.id}
+                align={column.align}
+                sx={{ fontWeight: 'bold', minWidth: column.minWidth, backgroundColor: headerBackground }}
+                style={rowStyle}
+              >
+                {column.label}
+              </TableCell>
+            ))}
+          </TableRow>
+        </TableHead>
+        <TableBody>
             {rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => (
-                <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+              .map((row, index) => (
+                <TableRow hover role="checkbox" tabIndex={-1} key={index}>
                   {columns.map((column) => {
                     const value = row[column.id];
                     return (
                       <TableCell key={column.id} align={column.align}>
-                        {column.id === 'positionTitle' ? (
-                          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                            <Image
-                              src={row.avatar}
-                              alt={row.positionTitle}
-                              width={30}
-                              height={30}
-                              style={{ borderRadius: '50%', marginRight: '8px' }}
-                            />
-                            <Typography>{value}</Typography>
-                          </Box>
-                        ) : column.format && typeof value === 'number' ? (
+                        {column.format && typeof column.format === 'function' ? (
                           column.format(value)
                         ) : (
                           value
@@ -94,6 +80,7 @@ const TableComponent: React.FC<TableComponentProps> = ({ columns, rows }) => {
                 </TableRow>
               ))}
           </TableBody>
+
         </Table>
       </TableContainer>
       <TablePagination

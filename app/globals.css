@@ -79,4 +79,28 @@ body {
 .bg-gradient-from-green {
   background-image: linear-gradient(to bottom, #1d7c2d, #0a5517);
 }
+.table::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  border-radius:20px;
+}
 
+.table::-webkit-scrollbar-track {
+  background: white;
+  border-radius: 10px;
+  
+}
+
+.table::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 20px;
+}
+
+.table::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.table * {
+  scrollbar-width: thin;
+  scrollbar-color: #e4b44d67 white;
+}

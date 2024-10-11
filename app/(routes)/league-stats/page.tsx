@@ -145,7 +145,7 @@ const LeagueStatsPage = () => {
           <Typography variant="h5" className="font-semibold">League Standings</Typography>
           <Typography variant="body1">Stay updated with the latest league standings and team statistics. Analyze the performance of your favorite teams as the season progresses.</Typography>
         </Box>
-        <TableComponent columns={columns} rows={rows} />
+        <TableComponent columns={columns} rows={rows} border="1px solid #e5e5e5"/>
       </Container>
 
       <Container className="featured-teams">
