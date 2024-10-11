@@ -83,12 +83,7 @@ const columns: Column[] = [
   {
     id: 'date',
     label: 'Date',
-    minWidth: 170,
-    format: (value: string) => (
-      <span style={{ backgroundColor: '#ff963d96', color: '#fff', fontWeight: 'bold', padding: '4px',borderRadius:20}}>
-        {value}
-      </span>
-    ), 
+    minWidth: 170,  
   },
   {
     id: 'homeTeam',
@@ -107,7 +102,12 @@ const columns: Column[] = [
     label: 'Venue',
     minWidth: 170,
     align: 'right',
-  },
+    format: (value: string) => (
+      <span style={{ backgroundColor: '#ff963d96', color: '#fff', fontWeight: 'bold', padding: '4px',borderRadius:20}}>
+        {value}
+      </span>
+     ),
+    },
 ];
 
 type Row = {
