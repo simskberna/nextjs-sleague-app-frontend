@@ -76,3 +76,7 @@ body {
 .bg-gradient-from-gray {
   background-image: linear-gradient(to top, #104c1a, rgba(255, 255, 255, 0));
 }
+.bg-gradient-from-green {
+  background-image: linear-gradient(to bottom, #1d7c2d, #0a5517);
+}
+

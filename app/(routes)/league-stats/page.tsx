@@ -107,9 +107,9 @@ const LeagueStatsPage = () => {
 
   return (
     <AnimatedContainer>
-      <Container sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mt: 10, gap: 2 }}>
+      <Container sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mt: 15, gap: 2 }}>
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-          <Typography variant="h3" className="font-semibold">Unveiling the Best Moments in Soccer Leagues</Typography>
+         <Typography variant="h2" className="font-semibold">Unveiling the Best Moments in Soccer Leagues</Typography>
 
           <Stack sx={{ display: 'flex', flexDirection: 'column', gap: 4, mt:{xs:5,md:0} }}>
             <Box sx={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', gap: 2 }}>
