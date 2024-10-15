@@ -1,16 +1,19 @@
+"use client";
 import React from "react"; 
 import { Container, Box, Typography, Button, Card, CardMedia, CardContent } from '@mui/material';
 import Image from "next/image"; 
 import Link from "next/link";
 import EastIcon from "@mui/icons-material/East"; 
 import AnimatedContainer from "@/app/components/Shared/AnimationContainer";
+import useIsMobile from "@/app/hooks/useIsMobile";
 
 const PlayerFocusPage = () => { 
+  const isMobile = useIsMobile();
   return (
     <AnimatedContainer> 
       <Container sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 10, mt: { xs: 5, md: 15 } }}>
         <Box sx={{ flex: 1, width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 3 }}>
-          <Typography variant="h2" className="font-semibold">Spotlight on Soccer's Elite</Typography>
+          <Typography variant={isMobile ? "h4":"h2"} className="font-semibold">Spotlight on Soccer's Elite</Typography>
           <Typography variant="body1" className="font-normal">Discover the journeys of soccer's top players, their career-defining moments, and the stats that set them apart. Immerse yourself in the world of player excellence.</Typography>
           <Box sx={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
             <Button variant="contained" className="font-normal capitalize rounded-lg" sx={{ boxShadow: 'unset', backgroundColor: '#4caf50', color: 'white', '&:hover': { boxShadow: 'unset', backgroundColor: '#84cf81' } }}>
@@ -34,10 +37,10 @@ const PlayerFocusPage = () => {
         </Box>
       </Container>
 
-      <Container className="!max-w-[unset]" sx={{ mt: 10, bgcolor: '#ebffe8', height: 'auto', p: 10 }}>
+      <Container className="!max-w-[unset]" sx={{ mt: 10, bgcolor: '#ebffe8', height: 'auto', p: {xs:2,md:10} }}>
         <Typography variant="h4" className="font-semibold pb-6">Player Metrics That Matter</Typography>
         <Typography variant="body1" className="font-normal">Analyze the numbers behind the legends. Compare top players across leagues with our in-depth statistics and performance metrics.</Typography>
-        <Box sx={{ display: 'grid', gridTemplateColumns: 'auto auto', mt: 2, px: 10, py: 5 }}>
+        <Box sx={{ display: 'grid', gridTemplateColumns: 'auto auto', mt: 2, px: {xs:0,md:10}, py: {xs:0,md:5} }}>
           {[{ value: '100+', title: 'Goals Scored' }, { value: '50+', title: 'Assists Made' }, { value: '200+', title: 'Matches Played' }, { value: '5', title: 'Player of the Year Awards' }].map((item, idx) => (
             <Box key={item.title} 
               sx={{
