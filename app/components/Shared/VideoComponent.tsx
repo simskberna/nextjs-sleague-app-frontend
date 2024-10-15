@@ -1,11 +1,14 @@
+'use client';
 import React from 'react';
 import { Box, Container } from '@mui/material';
+import useIsMobile from '@/app/hooks/useIsMobile';
 
 interface VideoProps {
     videoId: string;
 }
 
 const VideoComponent: React.FC<VideoProps> = ({videoId}) => {
+  const isMobile = useIsMobile();
   return (
     <Box
       sx={{
@@ -25,8 +28,11 @@ const VideoComponent: React.FC<VideoProps> = ({videoId}) => {
         frameBorder="0"
         allowFullScreen
         style={{ 
-          top: 20,
-          left: 50, 
+          top: '22px',
+          left: isMobile ? '6px' : '35px', 
+          right:'0px',
+          bottom:'0px',
+          position:'relative'
         }}
         title="YouTube Video"
       />

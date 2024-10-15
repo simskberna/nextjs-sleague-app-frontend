@@ -12,13 +12,14 @@ import useIsMobile from "@/app/hooks/useIsMobile";
 import Image from "next/image";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
-interface Column {
-  id: 'positionTitle' | 'code' | 'population' | 'size' | 'density';
+type Column = {
+  id: string;
   label: string;
-  minWidth?: number;
-  align?: 'right';
-  format?: (value: number) => string;
-}
+  minWidth: number;
+  align?: 'right' | 'left' | 'center';
+  format?: (value: any) => string | React.JSX.Element; 
+};
+
 
 const columns: Column[] = [
   {
@@ -107,7 +108,7 @@ const LeagueStatsPage = () => {
 
   return (
     <AnimatedContainer>
-      <Container sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mt: 15, gap: 2 }}>
+      <Container sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mt: {xs:5,md:15}, gap: 2 }}>
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'flex-start' }}>
          <Typography variant="h2" className="font-semibold">Unveiling the Best Moments in Soccer Leagues</Typography>
 
@@ -229,7 +230,7 @@ const LeagueStatsPage = () => {
       
       </Container>
 
-      <Container className="slider-area" sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '350px', width: '100%', backgroundColor: '#ebffe8', my: 10 }}>
+      <Container className="slider-area !max-w-[unset]" sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '350px', width: '100%', backgroundColor: '#ebffe8', my: 10 }}>
           
         {topReviews.map((x, index) => 
           x.name === activeSection && (
@@ -275,7 +276,7 @@ const LeagueStatsPage = () => {
         </Box>
       </Container>
 
-      <Container className="bottom-banner" sx={{bgcolor:'#086018',p:4}}>
+      <Container className="bottom-banner !max-w-[unset]" sx={{bgcolor:'#086018',p:4}}>
         <Box className='shadow-md' sx={{gap:6,bgcolor:'rgb(255 255 255 / 0.05)',borderRadius:4,p:4,display:'flex',flexDirection:{xs:'column',md:'row'},justifyContent:'center',alignItems:'center'}}>
           <Image src="/assets/temporary-banner.jpeg" className="rounded-lg" alt="banner" width={300} height={300}/>
           <Box sx={{display:'flex',flexDirection:'column'}}>

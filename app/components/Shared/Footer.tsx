@@ -36,8 +36,8 @@ const Footer: React.FC = () => {
         width: '100%', 
       }}
     >
-      <Container sx={{ display: 'flex', flexDirection: 'column',mt:10,mb:10 }}>
-        <Box sx={{ display: 'flex', alignItems: {xs:'start',md:'center'}, justifyContent: 'center',gap:5,flexDirection:'row',flexWrap:{xs:'wrap',sm:'no-wrap'} }}>
+      <Container sx={{ display: 'flex', flexDirection: 'column',mt:{xs:2,sm:10},mb:{xs:2,md:10} }}>
+        <Box sx={{ display: {xs:'grid',sm:'flex'},gridTemplateColumns:{xs:'auto auto',sm:'none'}, alignItems: {xs:'start',md:'center'}, justifyContent: 'center',gap:5,flexDirection:'row',flexWrap:{xs:'wrap',sm:'no-wrap'} }}>
           {links.map((link) => (
             <Link key={link.label} href={link.href} passHref>
               <Typography

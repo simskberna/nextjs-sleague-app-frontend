@@ -30,6 +30,7 @@ type TableComponentProps = {
 };
 
 const TableComponent: React.FC<TableComponentProps> = ({ columns, rows,headerBackground,border,rowStyle}) => {
+  
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -44,13 +45,13 @@ const TableComponent: React.FC<TableComponentProps> = ({ columns, rows,headerBac
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden', border: border }} className='table'>
-      <TableContainer sx={{ maxHeight: 440 }}>
+      <TableContainer sx={{ maxHeight: 440,maxWidth:{xs:'350px',sm:'unset'} }}>
         <Table stickyHeader aria-label="sticky table">
         <TableHead sx={{ backgroundColor: '#1976d2' }}>
           <TableRow>
-            {columns.map((column) => (
+            {columns.map((column,index) => (
               <TableCell
-                key={column.id}
+                key={index}
                 align={column.align}
                 sx={{ fontWeight: 'bold', minWidth: column.minWidth, backgroundColor: headerBackground }}
                 style={rowStyle}
@@ -61,25 +62,26 @@ const TableComponent: React.FC<TableComponentProps> = ({ columns, rows,headerBac
           </TableRow>
         </TableHead>
         <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row, index) => (
-                <TableRow hover role="checkbox" tabIndex={-1} key={index}>
-                  {columns.map((column) => {
-                    const value = row[column.id];
-                    return (
-                      <TableCell key={column.id} align={column.align}>
-                        {column.format && typeof column.format === 'function' ? (
-                          column.format(value)
-                        ) : (
-                          value
-                        )}
-                      </TableCell>
-                    );
-                  })}
-                </TableRow>
-              ))}
-          </TableBody>
+        {rows.map((row, index) => { 
+          return (
+            <TableRow hover role="checkbox" tabIndex={-1} key={index}>
+              {columns.map((column) => {
+                const value = row[column.id];
+                return (
+                  <TableCell key={column.id} align={column.align}>
+                    {column.format && typeof column.format === 'function' ? (
+                      column.format(value)
+                    ) : (
+                      value
+                    )}
+                  </TableCell>
+                );
+              })}
+            </TableRow>
+          );
+        })}
+      </TableBody>
+
 
         </Table>
       </TableContainer>

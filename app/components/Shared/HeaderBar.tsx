@@ -13,11 +13,12 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import Image from 'next/image'; 
 import SearchIcon from '@mui/icons-material/Search';
-import { InputBase,Link } from '@mui/material'; 
+import { InputBase } from '@mui/material'; 
+import Link from 'next/link';
 import { useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import EastIcon from '@mui/icons-material/East';
-
+import useIsMobile from '@/app/hooks/useIsMobile';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -63,7 +64,7 @@ const Search = styled('div')(({ theme }) => ({
   }));
 
 function HeaderBar() {
-  
+  const isMobile = useIsMobile();
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [pages] = useState([
       {name:'Home',path:'/'}, 
@@ -117,7 +118,7 @@ function HeaderBar() {
               sx={{ display: { xs: 'block', md: 'none' } }}
             >
              {pages.map((page) => (
-              <Link key={page.name} underline="none" href={page.name.toLowerCase() === 'home' ? '/' : page.path}>
+              <Link key={page.name} href={page.name.toLowerCase() === 'home' ? '/' : page.path}>
                 <MenuItem key={page.name} onClick={handleCloseNavMenu}>
                   <Typography sx={{ textAlign: 'center' }}>{page.name}</Typography>
                 </MenuItem>
@@ -129,7 +130,7 @@ function HeaderBar() {
         
           <Box sx={{px:4,py:2, display: { xs: 'none', md: 'flex',} }}>
           {pages.map((page) => (
-            <Link key={page.name} underline="none" href={page.name.toLowerCase() === 'home' ? '/' : page.path}>
+            <Link key={page.name} href={page.name.toLowerCase() === 'home' ? '/' : page.path}>
               <Button 
                 key={page.name}
                 onClick={handleCloseNavMenu}
@@ -155,8 +156,9 @@ function HeaderBar() {
           ))} 
           </Box> 
           <Box sx={{ml:2}}>
-            <Link href={'/'} underline="none" sx={{display:'flex',justifyContent:{xs:'end',md:'center'},alignItems:'center'}}>
-            <Image src='/assets/logo.png' className='scale-up-on-hover' alt="Logo" width={40} height={40}/>
+            <Link href={'/'} style={{display:'flex',justifyContent:isMobile ? 'end' :'center',alignItems:'center'}}>
+            <Image src='/assets/logo.png' className='scale-up-on-hover' alt="Logo" width={40} height={40} style={{ width: 40, height: 'auto' }} 
+            />
             </Link>
           </Box>
           <Container sx={{display:'flex',justifyContent:'center'}}>
@@ -170,7 +172,7 @@ function HeaderBar() {
             />
           </Search> 
           <Box sx={{height:'auto',ml:2,display: { xs: 'none', md: 'flex'}}}>
-            <Link href={'/'}  underline="none" className='p-2 group rounded-full flex items-center justify-center px-4 gap-2 hover:duration-300 hover:transition-all hover:bg-black/5'>
+            <Link href={'/'} className='p-2 group rounded-full flex items-center justify-center px-4 gap-2 hover:duration-300 hover:transition-all hover:bg-black/5'>
               <Typography variant="body1" sx={{color:'black'}}>Join us</Typography>
               <EastIcon 
                   sx={{ color: 'black', width:'20px',transition: 'transform 0.3s' }} 
@@ -178,8 +180,8 @@ function HeaderBar() {
                 />
             </Link>
           </Box>
-          <Box sx={{height:'auto',display: { xs: 'none', md: 'flex'}}}>
-            <Link href={'/'} underline="none" className='p-2 group bg-[#4caf50] rounded-full flex items-center justify-center px-4 gap-2 hover:duration-300 hover:transition-all hover:bg-[#369b3d]'>
+          <Box sx={{height:'auto',ml:2,display: { xs: 'none', md: 'flex'}}}>
+            <Link href={'/'} className='p-2 group bg-[#4caf50] rounded-full flex items-center justify-center px-4 gap-2 hover:duration-300 hover:transition-all hover:bg-[#369b3d]'>
               <Typography variant="body1" sx={{color:'white'}}>Contact us</Typography>
               <EastIcon 
                   sx={{ color: 'white', transition: 'transform 0.3s' }} 
