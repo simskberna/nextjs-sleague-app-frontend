@@ -8,14 +8,14 @@ interface ReviewProps {
   score: string;
   date: string;
   comment: string;
-}
+} 
 
 const ReviewBox: React.FC<ReviewProps> = ({ name, score, date, comment }) => { 
-  const [filledStars, totalStars] = score.split('/').map(Number);
+  const [filledStars, totalStars] = [score,5].map(Number);
 
   return (
-    <Card sx={{ boxShadow: 'unset', maxWidth:'560px', display: 'flex', flexDirection: 'column', my: 2, borderBottom: '1px solid #e5e5e5', pb: 4 }}>
-      <Box sx={{ display: 'flex', alignItems: 'start', width: 'fit-content' }}>
+    <Card sx={{ boxShadow: 'unset',width:{xs:'100%',md:'unset'},alignItems: 'start',justifyContent:'start',minWidth:{xs:'unset',md:'500px'}, maxWidth:'560px', display: 'flex', flexDirection: 'column', my: 2, borderBottom: '1px solid #e5e5e5', pb: 4 }}>
+      <Box sx={{ display: 'flex', width: '100%' }}>
         <Avatar>H</Avatar>
         <Container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}> 

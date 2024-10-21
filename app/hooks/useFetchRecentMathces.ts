@@ -16,15 +16,17 @@ interface Match {
   away_team_img: string;
   home_team_img: string;
 }
-
-const useFetchRecentMatches = () => {
-  const { data, error, isLoading } = useSWR<Match[]>('/matches?recent=true', async (url: string): Promise<Match[]> => {
-    const response: AxiosResponse<Match[]> = await _get<Match[]>(url);
+interface MatchesResponse {
+  content: Match[];
+}
+const useFetchRecentMatches = (page:number=0, size:number = 10) => {
+  const { data, error, isLoading } = useSWR<MatchesResponse>(`/matches?page=${page}&size=${size}`, async (url: string): Promise<MatchesResponse> => {
+    const response: AxiosResponse<MatchesResponse> = await _get<MatchesResponse>(url);
     return response.data;
   });
 
   return {
-    recentMatches: data,
+    recentMatches: data?.content,
     error,
     isLoading,
   };

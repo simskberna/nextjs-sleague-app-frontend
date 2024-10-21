@@ -17,18 +17,13 @@ import LoadingSpinner from '@/app/components/Shared/LoadingSpinner';
 import NoData from '@/app/components/Shared/NoData';
 import useDateFormatter from '@/app/hooks/useDateFormatter';
 import useFetchOverallStats from '@/app/hooks/useFetchOverallStats';
+import useFetchReviews from '@/app/hooks/useFetchReviews';
 
 interface Review {
   name: string;
   score: string;
   date: string;
   comment: string;
-} 
-interface OverallStat {
-  last_updated: string;
-  total_matches: number;
-  total_teams: number;
-  total_players: number;
 }
 
 interface SeriesData {
@@ -81,15 +76,11 @@ const columns: Column[] = [
 
 const HomePage: React.FC = () => {   
   const isMobile = useIsMobile();
-  const reviews: Review[] = [
-    { name: 'Alex Johnson', score: '4/5', date: 'October 10, 2023', comment: 'KickOff Central is my go-to site for all soccer stats and highlights. Absolutely love it!' },
-    { name: 'Jamie Lee', score: '5/5', date: 'October 5, 2023', comment: 'The insights provided here are unmatched. A must-visit for any soccer fan!' },
-    { name: 'Sam Taylor', score: '5/5', date: 'September 28, 2023', comment: 'Great content and easy navigation. KickOff Central keeps me updated with all the latest in soccer.' },
-  ];
 
   const { recentMatches, error: recentError, isLoading: recentLoading } = useFetchRecentMatches();
-  const { upcomingMatches, error: upcomingError, isLoading: upcomingLoading } = useFetchUpcomingMatches();
+  const { upcomingMatches, error: upcomingError, isLoading: upcomingLoading } = useFetchUpcomingMatches(0,10);
   const { overallStats, error: statsError, isLoading: statsLoading } = useFetchOverallStats();
+  const { reviews, error:reviewsError, isLoading:reviewsLoading} = useFetchReviews(0,5);
 
   const [series, setSeries] = useState<SeriesData[]>([]);
 
@@ -203,8 +194,8 @@ const HomePage: React.FC = () => {
       </AnimatedContainer>
 
       <AnimatedContainer>
-        <Container sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'start', alignItems: 'center', my: 10 }}>
-          {reviews.map((review, index) => (
+        <Container sx={{ display: 'grid', gridTemplateColumns: {xs:'auto',md:'auto auto'},  my: 10 }}>
+          {reviewsLoading ? <LoadingSpinner/> : reviewsError ? <NoData/> : reviews?.map((review, index) => (
             <ReviewBox
               key={index}
               name={review.name}

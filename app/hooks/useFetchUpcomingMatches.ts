@@ -9,14 +9,17 @@ type Row = {
   venue: string;
 };
 
-const useFetchUpcomingMatches = () => {
-  const { data, error, isLoading } = useSWR<Row[]>('/matches?upcoming=true', async (url: string): Promise<Row[]> => {
-    const response: AxiosResponse<Row[]> = await _get<Row[]>(url);
+interface TableResponse {
+  content: Row[];
+}
+const useFetchUpcomingMatches = (page:number=0, size:number = 10) => {
+  const { data, error, isLoading } = useSWR<TableResponse>(`/matches?page=${page}&size=${size}`, async (url: string): Promise<TableResponse> => {
+    const response: AxiosResponse<TableResponse> = await _get<TableResponse>(url);
     return response.data;
   });
 
   return {
-    upcomingMatches: data,
+    upcomingMatches: data?.content,
     error,
     isLoading,
   };
